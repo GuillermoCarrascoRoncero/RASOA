@@ -41,7 +41,7 @@ def on_message(client, userdata, msg):
 
 @app.route('/wsdl', methods=['GET'])
 def wsdl():
-    with open('docs/api-description.wsdl', 'r') as f:
+    with open('docs/api-description.xml', 'r') as f:
         wsdl_content = f.read()
     return Response(wsdl_content, content_type='application/xml')
 

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<definitions name="SensorAverageService"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             targetNamespace="http://schemas.xmlsoap.org/wsdl/">
+
+    <service name="SensorAverageService">
+        <documentation>Provides statistics on sensor data.</documentation>
+        <port name="SensorAveragePort">
+            <soap:address location="http://localhost:5000/webservice"/>
+        </port>
+    </service>
+
+    <message name="SensorAverageRequest">
+        <part name="startDate" type="xsd:date"/>
+        <part name="endDate" type="xsd:date"/>
+    </message>
+
+    <message name="SensorAverageResponse">
+        <part name="temperatura_media" type="xsd:float"/>
+        <part name="humedad_media" type="xsd:float"/>
+        <part name="co2_media" type="xsd:float"/>
+        <part name="volatiles_media" type="xsd:float"/>
+        <part name="num_muestras" type="xsd:int"/>
+        <part name="fecha" type="xsd:string"/>
+    </message>
+
+    <portType name="SensorAveragePortType">
+        <operation name="GetSensorAverage">
+            <input message="tns:SensorAverageRequest"/>
+            <output message="tns:SensorAverageResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="SensorAverageBinding" type="tns:SensorAveragePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="GetSensorAverage">
+            <soap:operation soapAction="http://schemas.xmlsoap.org/wsdl/SensorAverage#GetSensorAverage"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+
+</definitions>
