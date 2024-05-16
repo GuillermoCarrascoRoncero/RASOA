@@ -42,6 +42,16 @@
                     document.getElementById("numSamples").innerText = "Número de Muestras: " + response.querySelector("NumSamples").textContent;
                     document.getElementById("dateRange").innerText = "Rango de Fechas: " + response.querySelector("DateRange").textContent;
                 }
+                else if (xhr.status == 404) {
+                    var response = xhr.responseXML;
+                    document.getElementById("errorMessage").innerText = "No hay datos dentro del rango de fechas especificado";
+                    document.getElementById("temperature").innerText = "Temperatura: ";
+                    document.getElementById("humidity").innerText = "Humedad: ";
+                    document.getElementById("co2").innerText = "CO2: ";
+                    document.getElementById("volatiles").innerText = "Volátiles: ";
+                    document.getElementById("numSamples").innerText = "Número de Muestras: ";
+                    document.getElementById("dateRange").innerText = "Rango de Fechas: ";
+                }
             };
             xhr.send(formData);
         });
